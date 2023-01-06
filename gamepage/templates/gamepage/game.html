@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game Start</title>
+        <script>
+            choices = ["rock", "paper", "scissors"];
+
+            let toggle = button => {
+                // select all the buttons within the HTML page
+                let btn = document.querySelectorAll('button');
+                // loop over all the buttons and assign the grey color to each of them
+                for(let i=0; i<btn.length; i++){
+                    btn[i].style.background = '#bfbfbf';
+                }
+
+                // assign a different color only to the clicked button
+                button.style.background='#ff0000';
+
+                let element = document.getElementById("content");
+                let hidden = element.getAttribute("hidden");
+
+                // if this is the first time a button is clicked => it removes the hidden attribute
+                if (hidden) {
+                   element.removeAttribute("hidden");
+                }
+
+                // pick a number between 0 and 2
+                let outcome = Math.floor(Math.random() * 3)
+                // assign a value to the opponent choice
+                document.getElementById('opponent').innerHTML = choices[outcome];
+
+
+                let headers = new Headers();
+                headers.append('Accept', 'application/json');
+                headers.append('Content-Type', 'application/json');
+
+                fetch('http://127.0.0.1:8000/result/', {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({ "user_choice": button.value, "opponent_choice":  choices[outcome] })
+                })
+              }
+        </script>
+    </head>
+    <body>
+        <h1>Choices</h1>
+        <button name="rock" value="1" onclick="toggle(this)">rock</button>
+        <button name="paper" value="2" onclick="toggle(this)">paper</button>
+        <button name="scissors" value="3" onclick="toggle(this)">scissors</button>
+
+        <!-- Contents loaded from server is inserted here by javascript -->
+        <div><br></div>
+        <div id="content" hidden="hidden">
+            Opponent choice: <p style="display:inline" id="opponent"></p>
+        </div>
+
+    </body>
+</html>
