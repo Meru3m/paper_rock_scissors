@@ -37,16 +37,16 @@
                 fetch('http://127.0.0.1:8000/result/', {
                     method: 'POST',
                     headers: headers,
-                    body: JSON.stringify({ "user_choice": button.value, "opponent_choice":  choices[outcome] })
+                    body: JSON.stringify({ "user_choice": Number(button.value), "opponent_choice": outcome })
                 })
               }
         </script>
     </head>
     <body>
         <h1>Choices</h1>
-        <button name="rock" value="1" onclick="toggle(this)">rock</button>
-        <button name="paper" value="2" onclick="toggle(this)">paper</button>
-        <button name="scissors" value="3" onclick="toggle(this)">scissors</button>
+        <button name="rock" value="0" onclick="toggle(this)">rock</button>
+        <button name="paper" value="1" onclick="toggle(this)">paper</button>
+        <button name="scissors" value="2" onclick="toggle(this)">scissors</button>
 
         <!-- Contents loaded from server is inserted here by javascript -->
         <div><br></div>

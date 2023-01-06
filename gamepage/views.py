@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 
 class ResultView(View):
     def post(self, request, **kwargs):
-        print("Sììììì")
+        print(request.body)
         response = HttpResponse(
             # RFC 1123 date format.
             headers={'Content-Type': 'application/json'},
