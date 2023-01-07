@@ -16,7 +16,7 @@
                 // assign a different color only to the clicked button
                 button.style.background='#ff0000';
 
-                let element = document.getElementById("content");
+                let element = document.getElementById("content1");
                 let hidden = element.getAttribute("hidden");
 
                 // if this is the first time a button is clicked => it removes the hidden attribute
@@ -38,7 +38,25 @@
                     method: 'POST',
                     headers: headers,
                     body: JSON.stringify({ "user_choice": Number(button.value), "opponent_choice": outcome })
-                })
+                }).then(function(response) {
+                    // The response is a Response instance, we need to parse the data into a useable format using `.json()`
+                    return response.json();
+                  }).then(function(data) {
+                    // `data` is the parsed version of the JSON returned from the above endpoint.
+                    let w = data["winner"];
+                    let winner = "Even";
+                    if (w === 0) {
+                        winner = "User"
+                    } else if (w === 1) {
+                        winner = "Opponent"
+                    }
+                    document.getElementById('result').innerHTML = winner;
+                    let element = document.getElementById("content2");
+                    let hidden = element.getAttribute("hidden");
+                    if (hidden) {
+                       element.removeAttribute("hidden");
+                    }
+                  });
               }
         </script>
     </head>
@@ -50,8 +68,12 @@
 
         <!-- Contents loaded from server is inserted here by javascript -->
         <div><br></div>
-        <div id="content" hidden="hidden">
+        <div id="content1" hidden="hidden">
             Opponent choice: <p style="display:inline" id="opponent"></p>
+        </div>
+        <div><br></div>
+        <div id="content2" hidden="hidden">
+            Winner: <p style="display:inline" id="result"></p>
         </div>
 
     </body>
