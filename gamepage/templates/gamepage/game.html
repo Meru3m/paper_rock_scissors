@@ -45,9 +45,9 @@
                     // `data` is the parsed version of the JSON returned from the above endpoint.
                     let w = data["winner"];
                     let winner = "Even";
-                    if (w === 0) {
+                    if (w === 1) {
                         winner = "User"
-                    } else if (w === 1) {
+                    } else if (w === 2) {
                         winner = "Opponent"
                     }
                     document.getElementById('result').innerHTML = winner;
