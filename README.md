@@ -24,8 +24,6 @@ python -m pip install -r requirements.txt
  ```
 python manage.py migrate
 ```
-
-
 ### Executing program
 Once all the installation steps are completed you can run the game with the following commands:
 * Launch the webapp:
@@ -36,6 +34,13 @@ You can now play the game at the following address:
 ```
 http://127.0.0.1:8000/
 ```
+### Test the program
+Once all the installation steps are completed you can test the game with the following commands:
+```
+python manage.py test
+```
+All the tests are ran at once
+
 ## Authors
 
 Contributors names and contact info
