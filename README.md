@@ -10,17 +10,32 @@ Simple project to play rock-paper-scissors from a webpage, built using Django fr
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Clone this repo
+* Within the project folder create a virtual environment and activate it:
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+* Install all the dependencies listed in requirements.txt:
+ ```
+python -m pip install -r requirements.txt
+```
+* Apply all the migrations:
+ ```
+python manage.py migrate
+```
+
 
 ### Executing program
-
-* How to run the program
-* Step-by-step bullets
+Once all the installation steps are completed you can run the game with the following commands:
+* Launch the webapp:
 ```
-code blocks for commands
+python manage.py runserver
 ```
-
+You can now play the game at the following address:
+```
+http://127.0.0.1:8000/
+```
 ## Authors
 
 Contributors names and contact info
